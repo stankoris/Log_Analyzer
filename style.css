@@ -1,0 +1,239 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #2a5298;
+}
+
+h1 {
+    color: #1e3c72;
+    font-size: 2em;
+}
+
+.upload-zone {
+    border: 3px dashed #2a5298;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: #f8f9fa;
+    margin-bottom: 30px;
+}
+
+.upload-zone:hover {
+    border-color: #1e3c72;
+    background: #e9ecef;
+}
+
+.upload-zone input {
+    display: none;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card h3 {
+    font-size: 0.9em;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.stat-card .value {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+input[type="text"], select, button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+}
+
+input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+}
+
+select {
+    background: white;
+}
+
+button {
+    background: #2a5298;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #1e3c72;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    color: #1e3c72;
+    margin-bottom: 15px;
+    font-size: 1.5em;
+    border-left: 4px solid #2a5298;
+    padding-left: 10px;
+}
+
+.log-entries {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background: #f8f9fa;
+}
+
+.log-entry {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.level-ERROR, .level-CRITICAL, .level-FATAL {
+    border-left: 4px solid #dc3545;
+    background: #fff5f5;
+}
+
+.level-WARN, .level-WARNING {
+    border-left: 4px solid #ffc107;
+    background: #fffbf0;
+}
+
+.level-INFO {
+    border-left: 4px solid #17a2b8;
+}
+
+.level-DEBUG {
+    border-left: 4px solid #6c757d;
+}
+
+.timestamp {
+    color: #6c757d;
+    margin-right: 10px;
+}
+
+.level {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 11px;
+}
+
+.level-ERROR, .level-CRITICAL, .level-FATAL { background: #dc3545; color: white; }
+.level-WARN, .level-WARNING { background: #ffc107; color: #000; }
+.level-INFO { background: #17a2b8; color: white; }
+.level-DEBUG { background: #6c757d; color: white; }
+
+.ip-address {
+    color: #2a5298;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.ip-address:hover {
+    color: #1e3c72;
+}
+
+.list-container {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.list-item {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden {
+    display: none;
+}
+
+.alert {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
