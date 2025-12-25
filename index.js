@@ -282,33 +282,33 @@ function openIPInfo(ip) {
 
 function exportReport() {
     const report = `DIGITAL FORENSIC LOG ANALYSIS REPORT
-    =====================================
-    File: ${fileName}
-    Generated: ${new Date().toLocaleString()}
+=====================================
+File: ${fileName}
+Generated: ${new Date().toLocaleString()}
 
-    SUMMARY
-    -------
-    Total Entries: ${analysis.total}
-    Time Range: ${analysis.timeRange.start || 'N/A'} to ${analysis.timeRange.end || 'N/A'}
+SUMMARY
+-------
+Total Entries: ${analysis.total}
+Time Range: ${analysis.timeRange.start || 'N/A'} to ${analysis.timeRange.end || 'N/A'}
 
-    LOG LEVELS
-    ----------
-    ${Object.entries(analysis.levels).map(([level, count]) => `${level}: ${count}`).join('\n')}
+LOG LEVELS
+----------
+${Object.entries(analysis.levels).map(([level, count]) => `${level}: ${count}`).join('\n')}
 
-    TOP IP ADDRESSES
-    ----------------
-    ${Object.entries(analysis.ips).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([ip, count]) => `${ip}: ${count} requests`).join('\n')}
+TOP IP ADDRESSES
+----------------
+${Object.entries(analysis.ips).sort((a, b) => b[1] - a[1]).slice(0, 10).map(([ip, count]) => `${ip}: ${count} requests`).join('\n')}
 
-    ERRORS DETECTED
-    ---------------
-    ${analysis.errors.length} error(s) found
+ERRORS DETECTED
+---------------
+${analysis.errors.length} error(s) found
 
-    SUSPICIOUS ACTIVITIES
-    --------------------
-    ${analysis.suspiciousActivities.length} suspicious entries detected
+SUSPICIOUS ACTIVITIES
+--------------------
+${analysis.suspiciousActivities.length} suspicious entries detected
 
-    ${analysis.suspiciousActivities.slice(0, 20).map(entry => `[${entry.timestamp || 'No timestamp'}] ${entry.raw}`).join('\n')}
-    `;
+${analysis.suspiciousActivities.slice(0, 20).map(entry => `[${entry.timestamp || 'No timestamp'}] ${entry.raw}`).join('\n')}
+`;
 
     const blob = new Blob([report], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
