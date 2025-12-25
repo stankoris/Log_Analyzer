@@ -214,16 +214,21 @@ function displayAnalysis() {
             </div>
         `).join('');
 
+    const suspiciousAlert = document.getElementById('suspiciousAlert');
+    const suspiciousEntries = document.getElementById('suspiciousEntries');
+    
     if (analysis.suspiciousActivities.length > 0) {
-        document.getElementById('suspiciousAlert').classList.remove('hidden');
+        suspiciousAlert.classList.remove('hidden');
         document.getElementById('suspiciousText').textContent = 
             `${analysis.suspiciousActivities.length} suspicious activities detected`;
         
-        const suspiciousEntries = document.getElementById('suspiciousEntries');
         suspiciousEntries.innerHTML = analysis.suspiciousActivities
             .slice(0, 20)
             .map(entry => createLogEntryHTML(entry))
             .join('');
+    } else {
+        suspiciousAlert.classList.add('hidden');
+        suspiciousEntries.innerHTML = '<div style="padding: 20px; text-align: center; color: #6c757d;">No suspicious activities detected</div>';
     }
 }
 
@@ -248,7 +253,16 @@ function displayLogEntries() {
 
     const filtered = logData.filter(entry => {
         const matchesSearch = entry.raw.toLowerCase().includes(searchTerm);
-        const matchesLevel = levelFilter === 'all' || entry.level === levelFilter;
+        
+        let matchesLevel = levelFilter === 'all';
+        if (!matchesLevel) {
+            if (levelFilter === 'WARN') {
+                matchesLevel = entry.level === 'WARN' || entry.level === 'WARNING';
+            } else {
+                matchesLevel = entry.level === levelFilter;
+            }
+        }
+        
         return matchesSearch && matchesLevel;
     });
 
@@ -268,7 +282,6 @@ function openIPInfo(ip) {
 
 function exportReport() {
     const report = `DIGITAL FORENSIC LOG ANALYSIS REPORT
-    
     =====================================
     File: ${fileName}
     Generated: ${new Date().toLocaleString()}
