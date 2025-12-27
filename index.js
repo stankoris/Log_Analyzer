@@ -60,23 +60,6 @@ function loadFromCache() {
     }
 }
 
-function clearCache() {
-    if (confirm('Are you sure you want to clear cached data?')) {
-        const numChunks = parseInt(sessionStorage.getItem('logAnalyzerChunks') || '0');
-        for (let i = 0; i < numChunks; i++) {
-            sessionStorage.removeItem(`logAnalyzerData_${i}`);
-        }
-        sessionStorage.removeItem('logAnalyzerChunks');
-        
-        logData = [];
-        analysis = {};
-        fileName = '';
-        document.getElementById('fileName').textContent = '';
-        document.getElementById('analysisSection').classList.add('hidden');
-        alert('Cache cleared successfully!');
-    }
-}
-
 document.getElementById('fileInput').addEventListener('change', async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -321,3 +304,4 @@ ${analysis.suspiciousActivities.slice(0, 20).map(entry => `[${entry.timestamp ||
 
 document.getElementById('searchInput').addEventListener('input', displayLogEntries);
 document.getElementById('levelFilter').addEventListener('change', displayLogEntries);
+
